@@ -7,6 +7,7 @@ configure do
 end
 
 get '/api/site/:site' do
+  content_type :json
   visit(params['site']).to_json
 end
 
