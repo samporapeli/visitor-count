@@ -2,12 +2,17 @@
 require 'sinatra'
 require 'json'
 
+configure do
+  mime_type :javascript, 'text/javascript'
+end
+
 get '/api/site/:site' do
   visit(params['site']).to_json
 end
 
 get '/js/counter.js' do
-  File.read('counter.js')
+  content_type :javascript
+  send_file 'counter.js'
 end
 
 def visit(site)
