@@ -6,6 +6,10 @@ get '/api/site/:site' do
   visit(params['site']).to_json
 end
 
+get '/js/counter.js' do
+  File.read('counter.js')
+end
+
 def visit(site)
   file = File.read('./data.json')
   data = JSON.parse(file)
