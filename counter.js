@@ -1,4 +1,4 @@
-debug = true;
+debug = false;
 
 var baseUrl = "https://sampo.website/app/visitor-count/";
 
