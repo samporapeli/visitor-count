@@ -2,6 +2,8 @@
 require 'sinatra'
 require 'json'
 
+set :protection, :except => :frame_options
+
 configure do
   mime_type :javascript, 'text/javascript'
 end
@@ -14,6 +16,11 @@ end
 get '/js/counter.js' do
   content_type :javascript
   send_file 'counter.js'
+end
+
+get '/html/frame.html' do
+  content_type :html
+  send_file 'frame.html'
 end
 
 def visit(site)

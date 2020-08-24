@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.addEventListener("message", sendCountRequest);
+
+        toParent({
+            request: "getSiteId"
+        });
+
+        function sendCountRequest(evt) {
+            const site = evt.data.siteId;
+            const endpoint = evt.data.ApiEndpoint;
+            fetch(endpoint + "site/" + site)
+                .then(response => response.json())
+                .then(data => toParent(data));
+        }
+
+        function toParent(message) {
+            window.parent.postMessage(message, "*");
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
