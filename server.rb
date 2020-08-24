@@ -2,7 +2,7 @@
 require 'sinatra'
 require 'json'
 
-set :protection, :except => :frame_options
+set :protection, :except => [:frame_options, :json_csrf]
 
 configure do
   mime_type :javascript, 'text/javascript'
