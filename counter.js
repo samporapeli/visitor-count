@@ -40,6 +40,6 @@ window.onload = function() {
     function updatePage(data) {
         const element = document.getElementById("visitor-counter");
         const since = new Date(data.since * 1000);
-        element.innerHTML = data.amount + " sivunlatausta " + since.toLocaleDateString() + " alkaen.";
+        element.innerHTML = data.amount + (data.amount == 1 ? " sivunlataus " : " sivunlatausta ") + since.toLocaleDateString() + " alkaen.";
     }
 }
