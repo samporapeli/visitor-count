@@ -13,6 +13,16 @@ get '/api/site/:site' do
   visit(params['site']).to_json
 end
 
+get '/api/site/:site/view-only' do
+  content_type :json
+  site_data = get_dict()[params['site']]
+  if site_data.nil?
+    Hash['amount' => 0, 'since' => nil].to_json
+  else
+    site_data.to_json
+  end
+end
+
 get '/js/counter.js' do
   content_type :javascript
   send_file 'counter.js'
@@ -24,8 +34,7 @@ get '/html/frame.html' do
 end
 
 def visit(site)
-  file = File.read('./data.json')
-  data = JSON.parse(file)
+  data = get_dict()
   amount = if data.has_key? site
              data[site]['amount'] + 1
            else
@@ -37,4 +46,9 @@ def visit(site)
   File.write('./data.json', JSON.dump(data))
   print JSON.dump(data)
   data[site]
+end
+
+def get_dict()
+  file = File.read('./data.json')
+  JSON.parse(file)
 end
