@@ -13,7 +13,7 @@ window.onload = function() {
     var site;
     const siteNameElement = document.getElementById("site-name");
     if (siteNameElement === null) {
-        encodeURI(window.location.href);
+        site = encodeURI(window.location.href);
         site = site.split("/");
         site.shift();
         site.shift();
