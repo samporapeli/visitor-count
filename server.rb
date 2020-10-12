@@ -35,5 +35,6 @@ def visit(site)
            end
   data[site]['amount'] = amount
   File.write('./data.json', JSON.dump(data))
+  print JSON.dump(data)
   data[site]
 end
