@@ -6,25 +6,14 @@
     <script>
         window.addEventListener("message", sendCountRequest);
 
-        var first = true;
-
-        getSiteId();
-        // Update count every 10 seconds
-        setInterval(getSiteId, 10*1000);
-
-        function getSiteId() {
-            toParent({
-                request: "getSiteId"
-            });
-        }
+        toParent({
+            request: "getSiteId"
+        });
 
         function sendCountRequest(evt) {
             const site = evt.data.siteId;
             const endpoint = evt.data.ApiEndpoint;
-            // Only increment counter first time
-            const viewonly = first ? "" : "/view-only";
-            first = false;
-            fetch(endpoint + "site/" + site + viewonly)
+            fetch(endpoint + "site/" + site)
                 .then(response => response.json())
                 .then(data => toParent(data));
         }
