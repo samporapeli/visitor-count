@@ -4,6 +4,8 @@ require 'json'
 
 set :protection, :except => [:frame_options, :json_csrf]
 
+DATA_FILE_PATH = ENV.fetch('DATA_FILE_PATH', './data.json')
+
 configure do
   mime_type :javascript, 'text/javascript'
 end
@@ -43,12 +45,11 @@ def visit(site)
              1
            end
   data[site]['amount'] = amount
-  File.write('./data.json', JSON.dump(data))
-  print JSON.dump(data)
+  File.write(DATA_FILE_PATH, JSON.dump(data))
   data[site]
 end
 
 def get_dict()
-  file = File.read('./data.json')
+  file = File.read(DATA_FILE_PATH)
   JSON.parse(file)
 end
