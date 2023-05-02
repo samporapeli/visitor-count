@@ -9,3 +9,4 @@ services:
       - ./data.json:/app/data.json
     ports:
       - "3500:3500"
+    restart: unless-stopped
