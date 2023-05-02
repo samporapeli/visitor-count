@@ -1,0 +1,11 @@
+version: "3.3"
+
+services:
+  app:
+    container_name: visitor-count
+    build:
+      context: .
+    volumes:
+      - ./data.json:/app/data.json
+    ports:
+      - "3500:3500"
